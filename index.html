@@ -1,20 +1,47 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Message Box</title>
+    <title>Vstup do herne</title>
 </head>
+
 <body>
 
-    <h1>Moja stránka</h1>
-    <button onclick="zobrazSpravu()">Klikni ma</button>
+<h1>Hra</h1>
 
-    <script>
-        function zobrazSpravu() {
-            alert("Ahoj")
+<script>
+
+const meno = prompt("Zadaj svoje meno:", "Hrac");
+const vek = prompt("Zadaj svoj vek:", "18");
+
+if (vek >= 3) {
+
+    alert("Vitaj " + meno + "!");
+
+    const chceHrat = confirm("Chceš hrať hru?");
+
+    if (chceHrat === true) {
+
+        for (let i = 1; i <= 5; i++) {
+            alert("Kolo číslo: " + i);
         }
 
-    </script>
+        function spocitajBody(a, b) {
+            return a + b;
+        }
+
+        const vysledok = spocitajBody(5, 7);
+
+        alert("Tvoje body sú: " + vysledok);
+
+    } else {
+        alert("Možno nabudúce.");
+    }
+
+} else {
+    alert("Nemáš dosť rokov na vstup.");
+}
+
+</script>
 
 </body>
 </html>
