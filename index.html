@@ -1,45 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="sk">
 <head>
-    <title>Vstup do herne</title>
+<meta charset="UTF-8">
+<title>pespepspepsp</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+    margin-top:100px;
+    transition: background 0.5s;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#counter{
+    font-size:24px;
+    margin-top:20px;
+}
+</style>
 </head>
 
 <body>
-    
 
-<h1>Hra</h1>
+<h1>Moja JavaScript stránka</h1>
+
+<button onclick="changeColor()">Klikni na mňa</button>
+
+<p id="counter">Kliknutia: 0</p>
 
 <script>
 
-const meno = prompt("Zadaj svoje meno:", "Hrac");
-const vek = prompt("Zadaj svoj vek:", "18");
+let clicks = 0;
 
-if (vek >= 3) {
+function changeColor(){
 
-    alert("Vitaj " + meno + "!");
+    clicks++;
+    document.getElementById("counter").textContent = "Kliknutia: " + clicks;
 
-    const chceHrat = confirm("Chceš hrať hru?");
+    const colors = ["red","blue","green","purple","orange","pink","yellow"];
 
-    if (chceHrat === true) {
+    const randomColor = colors[Math.floor(Math.random()*colors.length)];
 
-        for (let i = 1; i <= 5; i++) {
-            alert("Kolo číslo: " + i);
-        }
+    document.body.style.background = randomColor;
 
-        function spocitajBody(a, b) {
-            return a + b;
-        }
-
-        const vysledok = spocitajBody(5, 7);
-
-        alert("Tvoje body sú: " + vysledok);
-
-    } else {
-        alert("Možno nabudúce.");
-    }
-
-} else {
-    alert("Nemáš dosť rokov na vstup.");
 }
 
 </script>
