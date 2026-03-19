@@ -1,211 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="sk">
 <head>
-<meta charset="utf-8">
-<title>Projekt z JavaScript</title>
+    <meta charset="UTF-8">
+    <title>fofo</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            text-align: center;
+        }
 
-<style>
+        input {
+            width: 80px;
+            padding: 10px;
+            margin: 5px;
+            font-size: 18px;
+        }
 
-body{
-font-family: Arial;
-text-align:center;
-}
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
 
-/* ===== SLIDER ===== */
-
-#slides{
-position:relative;
-height:200px;
-width:400px;
-margin:auto;
-list-style:none;
-padding:0;
-}
-
-.slide{
-position:absolute;
-left:0;
-top:0;
-width:100%;
-height:100%;
-opacity:0;
-z-index:1;
-transition:opacity 1s;
-color:white;
-font-size:30px;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.showing{
-opacity:1;
-z-index:2;
-}
-
-.slide:nth-of-type(1){background:red;}
-.slide:nth-of-type(2){background:orange;}
-.slide:nth-of-type(3){background:green;}
-.slide:nth-of-type(4){background:blue;}
-.slide:nth-of-type(5){background:purple;}
-
-/* ===== ANIMÁCIA BOX ===== */
-
-#box{
-width:100px;
-height:100px;
-background:black;
-margin:30px auto;
-position:relative;
-}
-
-</style>
+        #result {
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>JavaScript projekt</h1>
+<div class="calculator">
+    <h2>Kalkulačka</h2>
 
-<!-- ===== SLIDER ===== -->
+    <input type="number" id="num1" placeholder="Číslo 1">
+    <input type="number" id="num2" placeholder="Číslo 2">
 
-<ul id="slides">
+    <div>
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('*')">*</button>
+        <button onclick="calculate('/')">/</button>
+    </div>
 
-<li class="slide showing">Slide 1</li>
-<li class="slide">Slide 2</li>
-<li class="slide">Slide 3</li>
-<li class="slide">Slide 4</li>
-<li class="slide">Slide 5</li>
-
-</ul>
-
-<br>
-
-<button id="previous">Previous</button>
-<button id="pause">Pause</button>
-<button id="next">Next</button>
-
-<hr>
-
-<!-- ===== FORMULÁR (DOM) ===== -->
-
-<h2>Kalkulačka</h2>
-
-a: <input id="a" type="number" value="0"><br><br>
-b: <input id="b" type="number" value="0"><br><br>
-
-<button onclick="calculate()">Spočítať</button>
-
-<p>Výsledok: <span id="result">0</span></p>
-
-<hr>
-
-<!-- ===== jQuery animácia ===== -->
-
-<h2>jQuery animácia</h2>
-
-<button class="run">Spustiť animáciu</button>
-
-<div id="box"></div>
+    <div id="result">Výsledok: </div>
+</div>
 
 <script>
+function calculate(operation) {
+    let num1 = parseFloat(document.getElementById("num1").value);
+    let num2 = parseFloat(document.getElementById("num2").value);
+    let result;
 
-/* ===== SLIDER JS ===== */
+    if (isNaN(num1) || isNaN(num2)) {
+        document.getElementById("result").innerText = "Zadaj obe čísla!";
+        return;
+    }
 
-var slides = document.querySelectorAll('#slides .slide');
-var currentSlide = 0;
+    switch(operation) {
+        case '+':
+            result = num1 + num2;
+            break;
+        case '-':
+            result = num1 - num2;
+            break;
+        case '*':
+            result = num1 * num2;
+            break;
+        case '/':
+            if (num2 === 0) {
+                document.getElementById("result").innerText = "Nedá sa deliť nulou!";
+                return;
+            }
+            result = num1 / num2;
+            break;
+    }
 
-var slideInterval = setInterval(nextSlide,2000);
-
-function nextSlide(){
-goToSlide(currentSlide+1);
+    document.getElementById("result").innerText = "Výsledok: " + result;
 }
-
-function previousSlide(){
-goToSlide(currentSlide-1);
-}
-
-function goToSlide(n){
-
-slides[currentSlide].className='slide';
-currentSlide=(n+slides.length)%slides.length;
-slides[currentSlide].className='slide showing';
-
-}
-
-/* tlačidlá */
-
-var next=document.getElementById('next');
-var previous=document.getElementById('previous');
-var pauseButton=document.getElementById('pause');
-
-var playing=true;
-
-function pauseSlideshow(){
-pauseButton.innerHTML='Play';
-playing=false;
-clearInterval(slideInterval);
-}
-
-function playSlideshow(){
-pauseButton.innerHTML='Pause';
-playing=true;
-slideInterval=setInterval(nextSlide,2000);
-}
-
-pauseButton.onclick=function(){
-
-if(playing){pauseSlideshow();}
-else{playSlideshow();}
-
-};
-
-next.onclick=function(){
-pauseSlideshow();
-nextSlide();
-};
-
-previous.onclick=function(){
-pauseSlideshow();
-previousSlide();
-};
-
-
-/* ===== FORMULÁR JS ===== */
-
-function calculate(){
-
-var a=Number(document.getElementById("a").value);
-var b=Number(document.getElementById("b").value);
-
-var c=a+b;
-
-document.getElementById("result").innerHTML=c;
-
-}
-
-
-/* ===== jQuery ANIMÁCIA ===== */
-
-$(document).ready(function(){
-
-$(".run").click(function(){
-
-$("#box")
-
-.animate({opacity:"0.1", left:"+=400"},1200)
-.animate({opacity:"0.4", left:"+=160", height:"20", width:"20"},"slow")
-.animate({opacity:"1", left:"0", height:"100", width:"100"},"slow")
-.animate({top:"0"},"fast")
-.slideUp()
-.slideDown("slow");
-
-});
-
-});
-
 </script>
 
 </body>
