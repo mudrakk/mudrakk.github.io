@@ -1,96 +1,85 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-    <meta charset="UTF-8">
-    <title>fofo</title>
-    <style>
-        body {
-            font-family: Arial;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+<meta charset="UTF-8">
+<title>Nákupný zoznam</title>
 
-        .calculator {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            text-align: center;
-        }
+<style>
+body {
+    font-family: Arial;
+    background: #f4f4f4;
+    text-align: center;
+}
 
-        input {
-            width: 80px;
-            padding: 10px;
-            margin: 5px;
-            font-size: 18px;
-        }
+.container {
+    background: white;
+    padding: 20px;
+    margin: 50px auto;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
 
-        button {
-            padding: 10px 15px;
-            margin: 5px;
-            font-size: 18px;
-            cursor: pointer;
-        }
+h2 {
+    margin-bottom: 15px;
+}
 
-        #result {
-            margin-top: 15px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-    </style>
+.buttons button {
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: #4CAF50;
+    color: white;
+}
+
+.buttons button:hover {
+    background: #45a049;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+li {
+    padding: 8px;
+    background: #eee;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+</style>
+
 </head>
 <body>
 
-<div class="calculator">
-    <h2>fofo</h2>
+<div class="container">
+    <h2>Nákupný zoznam</h2>
 
-    <input type="number" id="num1" placeholder="Číslo 1">
-    <input type="number" id="num2" placeholder="Číslo 2">
-
-    <div>
-        <button onclick="calculate('+')">+</button>
-        <button onclick="calculate('-')">-</button>
-        <button onclick="calculate('*')">*</button>
-        <button onclick="calculate('/')">/</button>
+    <div class="buttons">
+        <button onclick="addItem('Chlieb')">🍞 Chlieb</button>
+        <button onclick="addItem('Mlieko')">🥛 Mlieko</button>
+        <button onclick="addItem('Syr')">🧀 Syr</button>
+        <button onclick="addItem('Šunka')">🥓 Šunka</button>
+        <button onclick="addItem('Jablká')">🍎 Jablká</button>
+        <button onclick="addItem('Banány')">🍌 Banány</button>
+        <button onclick="addItem('Vajcia')">🥚 Vajcia</button>
+        <button onclick="addItem('Maslo')">🧈 Maslo</button>
+        <button onclick="addItem('Cukor')">🍬 Cukor</button>
+        <button onclick="addItem('Káva')">☕ Káva</button>
     </div>
 
-    <div id="result">Výsledok: </div>
+    <ul id="list"></ul>
 </div>
 
 <script>
-function calculate(operation) {
-    let num1 = parseFloat(document.getElementById("num1").value);
-    let num2 = parseFloat(document.getElementById("num2").value);
-    let result;
+function addItem(item) {
+    let li = document.createElement("li");
+    li.textContent = item;
 
-    if (isNaN(num1) || isNaN(num2)) {
-        document.getElementById("result").innerText = "Zadaj obe čísla!";
-        return;
-    }
-
-    switch(operation) {
-        case '+':
-            result = num1 + num2;
-            break;
-        case '-':
-            result = num1 - num2;
-            break;
-        case '*':
-            result = num1 * num2;
-            break;
-        case '/':
-            if (num2 === 0) {
-                document.getElementById("result").innerText = "Nedá sa deliť nulou!";
-                return;
-            }
-            result = num1 / num2;
-            break;
-    }
-
-    document.getElementById("result").innerText = "Výsledok: " + result;
+    document.getElementById("list").appendChild(li);
 }
 </script>
 
