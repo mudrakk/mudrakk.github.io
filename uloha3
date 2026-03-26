@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokuta za rýchlosť</title>
+</head>
+<body>
+
+<script>
+    const rychlost = Number(prompt("Zadaj svoju rýchlosť (km/h):"));
+    const limit = 50;
+    const prekrocenie = rychlost - limit;
+
+    if (prekrocenie <= 0) {
+        alert("Dodržal si rýchlosť. Bez pokuty ");
+    } 
+    else if (prekrocenie <= 6) {
+        alert("Bol si napomenutý");
+    } 
+    else if (prekrocenie <= 10) {
+        alert("Pokuta: 20 €");
+    } 
+    else if (prekrocenie <= 15) {
+        alert("Pokuta: 40 €");
+    } 
+    else if (prekrocenie <= 19) {
+        alert("Pokuta: 60 €");
+    } 
+    else if (prekrocenie <= 25) {
+        alert("Pokuta: 90 €");
+    } 
+    else if (prekrocenie <= 30) {
+        alert("Pokuta: 140 €");
+    } 
+    else if (prekrocenie <= 35) {
+        alert("Pokuta: 200 €");
+    }
+    else if (prekrocenie <= 40) {
+        alert("Pokuta: 280 €");
+    }
+    else if (prekrocenie <= 45) {
+        alert("Pokuta: 360 €");
+    }
+    else if (prekrocenie <= 50) {
+        alert("Pokuta: 440 €");
+    }
+    else if (prekrocenie <= 55) {
+        alert("Pokuta: 540 €");
+    }
+    else if (prekrocenie <= 60) {
+        alert("Pokuta: 650 €");
+    }
+    else {
+        alert("Predvolanie na DI!");
+    }
+</script>
+
+</body>
+</html>
