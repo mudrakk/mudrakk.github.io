@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<title>Nákupný zoznam</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    margin: 50px auto;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+.buttons button {
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: #4CAF50;
+    color: white;
+}
+
+.buttons button:hover {
+    background: #45a049;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+li {
+    padding: 8px;
+    background: #eee;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Nákupný zoznam</h2>
+
+    <div class="buttons">
+        <button onclick="addItem('Chlieb')">🍞 Chlieb</button>
+        <button onclick="addItem('Mlieko')">🥛 Mlieko</button>
+        <button onclick="addItem('Syr')">🧀 Syr</button>
+        <button onclick="addItem('Šunka')">🥓 Šunka</button>
+        <button onclick="addItem('Jablká')">🍎 Jablká</button>
+        <button onclick="addItem('Banány')">🍌 Banány</button>
+        <button onclick="addItem('Vajcia')">🥚 Vajcia</button>
+        <button onclick="addItem('Maslo')">🧈 Maslo</button>
+        <button onclick="addItem('Cukor')">🍬 Cukor</button>
+        <button onclick="addItem('Káva')">☕ Káva</button>
+    </div>
+
+    <ul id="list"></ul>
+</div>
+
+<script>
+function addItem(item) {
+    let li = document.createElement("li");
+    li.textContent = item;
+
+    document.getElementById("list").appendChild(li);
+}
+</script>
+
+</body>
+</html>

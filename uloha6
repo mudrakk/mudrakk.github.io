@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<title>Super Video Player</title>
+
+<style>
+    button img {
+        width: 64px;
+        height: 64px;
+    }
+
+    video {
+        width: 400px;
+        transition: transform 0.3s;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Super Video Player</h1>
+
+<video id="video" src="video.mp4"></video>
+
+<br><br>
+
+<button onclick="play()"><img src="play.png" alt="play"></button>
+<button onclick="pauseVideo()"><img src="pause.png" alt="pause"></button>
+<button onclick="stop()"><img src="stop.png" alt="stop"></button>
+
+<button onclick="zvacsi()"><img src="plus.png" alt="zväčšiť"></button>
+<button onclick="zmensi()"><img src="minus.png" alt="zmenšiť"></button>
+
+<button onclick="vlavo()"><img src="left.png" alt="vlavo"></button>
+<button onclick="vpravo()"><img src="right.png" alt="vpravo"></button>
+
+<script>
+let video = document.getElementById("video");
+let velkost = 400;
+let rotacia = 0;
+
+function play() {
+    video.play();
+}
+
+function pauseVideo() {
+    video.pause();
+}
+
+function stop() {
+    video.pause();
+    video.currentTime = 0;
+}
+
+function zvacsi() {
+    velkost += 50;
+    video.style.width = velkost + "px";
+}
+
+function zmensi() {
+    velkost -= 50;
+    video.style.width = velkost + "px";
+}
+
+function vlavo() {
+    rotacia -= 10;
+    video.style.transform = "rotate(" + rotacia + "deg)";
+}
+
+function vpravo() {
+    rotacia += 10;
+    video.style.transform = "rotate(" + rotacia + "deg)";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>Hádaj číslo - DOM verzia</title>
+</head>
+<body>
+
+<h1>Hádaj číslo (1–10)</h1>
+
+<input type="number" id="guessInput" min="1" max="10">
+<button onclick="checkGuess()">Skontroluj</button>
+
+<p id="result"></p>
+
+<script>
+    // náhodné číslo
+    let randomNumber = Math.floor(Math.random() * 10) + 1;
+
+    function checkGuess() {
+        let userGuess = Number(document.getElementById("guessInput").value);
+        let result = document.getElementById("result");
+
+        if (userGuess === randomNumber) {
+            result.textContent = "Uhádol si!";
+        } else {
+            result.textContent = "Neuhádol si! Správne číslo bolo: " + randomNumber;
+        }
+    }
+</script>
+
+</body>
+</html>

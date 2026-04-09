@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>Generátor farebných štvorcov</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #container {
+            margin-top: 20px;
+        }
+
+        .stvorec {
+            width: 80px;
+            height: 80px;
+            background-color: rgb(100, 150, 255);
+            margin: 5px;
+            float: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Generátor farebných štvorcov</h2>
+
+    <label>Zvoľ počet štvorcov:</label>
+    <select id="pocet">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+
+    <button onclick="vygeneruj()">Vygeneruj štvorce</button>
+
+    <div id="container"></div>
+
+    <script>
+        function vygeneruj() {
+            let pocet = document.getElementById("pocet").value;
+            let container = document.getElementById("container");
+
+            container.innerHTML = ""; // vyčisti staré štvorce
+
+            for (let i = 1; i <= pocet; i++) {
+                let stvorec = document.createElement("div");
+                stvorec.className = "stvorec";
+
+                // náhodná farba
+                stvorec.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+
+                stvorec.textContent = i;
+                container.appendChild(stvorec);
+            }
+        }
+    </script>
+
+</body>
+</html>

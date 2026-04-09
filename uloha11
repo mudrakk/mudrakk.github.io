@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>Generátor rastúcich čísel</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #container {
+            margin-top: 20px;
+        }
+
+        .cislo {
+            float: left;
+            margin: 5px;
+            padding: 10px;
+            background-color: #e6e6ff;
+            border-radius: 6px;
+            text-align: center;
+            min-width: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Generátor rastúcich čísel</h2>
+
+    <label>Zvoľ počet čísel:</label>
+    <select id="pocet">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+    </select>
+
+    <button onclick="vygeneruj()">Vygeneruj rastúce čísla</button>
+
+    <div id="container"></div>
+
+    <script>
+        function vygeneruj() {
+            let pocet = document.getElementById("pocet").value;
+            let container = document.getElementById("container");
+
+            container.innerHTML = ""; // vymazanie starých čísel
+
+            for (let i = 1; i <= pocet; i++) {
+                let div = document.createElement("div");
+                div.className = "cislo";
+
+                div.style.fontSize = (i + 10) + "px";
+
+
+                div.style.color = "darkblue";
+
+                div.textContent = i;
+                container.appendChild(div);
+            }
+        }
+    </script>
+
+</body>
+</html>
